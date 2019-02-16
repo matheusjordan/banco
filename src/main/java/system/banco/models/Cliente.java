@@ -16,7 +16,7 @@ public class Cliente {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String nome;
+	private String email;
 	
 	@Column(name = "conta_id", nullable = false)
 	private Long contaId;
@@ -27,19 +27,19 @@ public class Cliente {
 	//Constructs
 	public Cliente() {}
 
-	public Cliente(String nome, Long contaId, String senha) {
-		this.nome = nome;
+	public Cliente(String email, Long contaId, String senha) {
+		this.email = email;
 		this.contaId = contaId;
 		this.senha = senha;
 	}
 
 	//Methods
-	public String getNome() {
-		return nome;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Long getContaId() {
@@ -56,5 +56,13 @@ public class Cliente {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
