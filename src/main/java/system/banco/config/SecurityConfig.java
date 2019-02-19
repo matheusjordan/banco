@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * Para cada requisição feita no site
 		 * É necessário estar autenticado.
 		 * */
-		http.authorizeRequests().anyRequest().authenticated();
+//		http.authorizeRequests().anyRequest().authenticated();
 		
 		/**Configuração do gerenciamento de sessões
 		 * Stateless serve para que as minhas sessões

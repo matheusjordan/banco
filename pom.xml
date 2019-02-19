@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>system.banco</groupId>
 	<artifactId>banco</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<name>banco</name>
 	<description>Mini sistema bancário</description>
 

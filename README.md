@@ -12,3 +12,7 @@ Version 1.2.0 - MJ
 1- Implementado Spring Security
 2- Implementado Classe SecurityConfig
 3- Implementado configurações básicas do Spring Security
+
+Version 1.3.0 - MJ
+1- Implementado perfis de Usuario
+2- Classe Cliente renomeada para Usuario

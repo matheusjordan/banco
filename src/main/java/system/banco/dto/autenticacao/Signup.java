@@ -14,7 +14,6 @@ public class Signup {
 	public Signup() {}
 
 	public Signup(String email, String senha) {
-		super();
 		this.email = email;
 		this.senha = senha;
 	}

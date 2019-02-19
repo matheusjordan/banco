@@ -2,6 +2,8 @@ package system.banco.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,44 +17,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import system.banco.dto.autenticacao.Signup;
-import system.banco.models.Cliente;
-import system.banco.service.ClienteService;
+import system.banco.models.Usuario;
+import system.banco.service.UsuarioService;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/usuarios")
 public class ClienteController {
 
 	@Autowired
-	private ClienteService service;
+	private UsuarioService service;
 	
 	@PostMapping("/cadastro")
-	public ResponseEntity<Cliente> createCliente(@RequestBody Signup cadastro){
-		service.createCliente(cadastro);
-		return new ResponseEntity<Cliente>(HttpStatus.CREATED);
+	public ResponseEntity<Usuario> createUsuario(@RequestBody @Valid Signup cadastro){
+		service.createUsuario(cadastro);
+		return new ResponseEntity<Usuario>(HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> readCliente(@PathVariable(name = "{id}") Long id){
-		Cliente cliente = service.readCliente(id);
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+	public ResponseEntity<Usuario> readUsuario(@PathVariable(name = "{id}") Long id){
+		Usuario cliente = service.readUsuario(id);
+		return new ResponseEntity<Usuario>(cliente, HttpStatus.OK);
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente){
-		service.updateCliente(cliente);
-		return new ResponseEntity<Cliente>(HttpStatus.OK);
+	public ResponseEntity<Usuario> updateUsuario(@RequestBody @Valid Usuario usuario){
+		service.updateUsuario(usuario);
+		return new ResponseEntity<Usuario>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Cliente> deleteCliente(@PathVariable(name = "{id}") Long id){
-		service.deleteCliente(id);
-		return new ResponseEntity<Cliente>(HttpStatus.OK);
+	public ResponseEntity<Usuario> deleteUsuario(@PathVariable(name = "{id}") Long id){
+		service.deleteUsuario(id);
+		return new ResponseEntity<Usuario>(HttpStatus.OK);
 	}
 	
 	//Other EndPoints
 	@GetMapping("/")
-	public ResponseEntity<List<Cliente>> findAll(){
-		List<Cliente> clientes = service.readAll();
-		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
+	public ResponseEntity<List<Usuario>> findAll(){
+		List<Usuario> usuarios = service.readAll();
+		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 }
