@@ -1,9 +1,10 @@
-package system.banco.security.service;
+package system.banco.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import system.banco.models.Usuario;
 import system.banco.service.UsuarioService;
@@ -11,6 +12,7 @@ import system.banco.service.UsuarioService;
 /**Classe por gerenciar regras de usuario
  * 
  * */
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired

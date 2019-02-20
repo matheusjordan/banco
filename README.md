@@ -22,3 +22,10 @@ Version 1.4.0 - MJ
 2- Implementado verificação de usuario UserDetailsService
 3- Implementado sobrecarga do metodo configure auth
 4- Implementado o Bean BCryptPasswordEncoder
+
+Version 1.5.0 - MJ
+1- Implementado algoritmo de geração de token em JWTUtil
+2- Implementado filtro de authenticação de usuarios
+3- Implementado validação de authenticação no filtro
+4- Implementado procedimento padrão caso usuário seja authenticado com sucesso
+5- Implementado encriptação da senha do usuário conforme algoritmo HS512

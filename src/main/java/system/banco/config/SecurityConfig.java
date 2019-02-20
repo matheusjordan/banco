@@ -15,18 +15,22 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import system.banco.security.JWT.JWTUtil;
+import system.banco.security.JWT.filters.JWTAuthenticationFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	public final String[] PUBLIC_GET_ENDPOINTS = {"/cliente/**"};
+	private final String[] PUBLIC_GET_ENDPOINTS = {"/usuarios/**"};
+	private final String[] PUBLIC_POST_ENDPOINTS = {"/usuarios/cadastro"};
 	
-	
-	//new
 	@Autowired
 	UserDetailsService userDetailsSer;
 	
-
+	@Autowired
+	JWTUtil jwtUtil;
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
 		
@@ -48,11 +52,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * */
 		http.authorizeRequests().antMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS).permitAll();
 		
+		//Endpoint post permitido para acesso publico
+		http.authorizeRequests().antMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS).permitAll();
+		
 		/**Configuração de Autorização de requisições
 		 * Para cada requisição feita no site
 		 * É necessário estar autenticado.
 		 * */
-//		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().authenticated();
+		
+		/**Configuração de filtro
+		 * É adicionao um filtro implementado
+		 * Neste caso será um filtro que captura requisições de login
+		 * */
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		
 		/**Configuração do gerenciamento de sessões
 		 * Stateless serve para que as minhas sessões

@@ -1,4 +1,4 @@
-package system.banco.security.service;
+package system.banco.security.services;
 
 import java.util.Collection;
 import java.util.Set;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import system.banco.dto.autenticacao.Signup;
@@ -17,9 +18,12 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptEncoder;
 
 	public Usuario createUsuario(Signup cadastro) {
-		Usuario usuario = new Usuario(cadastro.getEmail(), 0L, cadastro.getSenha());
+		Usuario usuario = new Usuario(cadastro.getEmail(), 0L, bCryptEncoder.encode(cadastro.getSenha()));
 		usuarioRepo.save(usuario);
 		LOG.info("Usuario " + usuario.getId() + " criado com sucesso!");
 		return usuario;
