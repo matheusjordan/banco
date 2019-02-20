@@ -43,4 +43,9 @@ public class UsuarioService {
 	public List<Usuario> readAll(){
 		return usuarioRepo.findAll();
 	}
+	
+	//Buscar usuário pelo email - New
+	public Usuario readByEmail(String email) {
+		return usuarioRepo.findByEmail(email);
+	}
 }

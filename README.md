@@ -16,3 +16,9 @@ Version 1.2.0 - MJ
 Version 1.3.0 - MJ
 1- Implementado perfis de Usuario
 2- Classe Cliente renomeada para Usuario
+
+Version 1.4.0 - MJ
+1- Implementado UserDetails
+2- Implementado verificação de usuario UserDetailsService
+3- Implementado sobrecarga do metodo configure auth
+4- Implementado o Bean BCryptPasswordEncoder

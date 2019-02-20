@@ -1,12 +1,16 @@
 package system.banco.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -16,6 +20,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	public final String[] PUBLIC_GET_ENDPOINTS = {"/cliente/**"};
+	
+	
+	//new
+	@Autowired
+	UserDetailsService userDetailsSer;
+	
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
@@ -61,5 +71,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
+	}
+	
+	@Bean
+	BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	/**Classe de configuração do usuario
+	 * É identificado o meu userDetailsServiceImpl através do autowired do UserDetailsService
+	 * É definido o algoritmo de encriptação da senha
+	 * */
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth
+			.userDetailsService(this.userDetailsSer)
+			.passwordEncoder(this.bCryptPasswordEncoder());
 	}
 }

@@ -7,5 +7,7 @@ import system.banco.models.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-
+	
+	//New
+	Usuario findByEmail(String email);
 }

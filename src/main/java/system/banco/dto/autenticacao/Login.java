@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 public class Login {
 	
 	@NotEmpty
-	private String contaNum;
+	private String email;
 	
 	@NotEmpty
 	private String senha;
@@ -13,19 +13,19 @@ public class Login {
 	//Constructs
 	public Login() {}
 
-	public Login(String contaNum, String senha) {
+	public Login(String email, String senha) {
 		super();
-		this.contaNum = contaNum;
+		this.email = email;
 		this.senha = senha;
 	}
 
 	//Methods
-	public String getContaNum() {
-		return contaNum;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setContaNum(String contaNum) {
-		this.contaNum = contaNum;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
