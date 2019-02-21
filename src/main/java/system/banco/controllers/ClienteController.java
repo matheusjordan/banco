@@ -34,7 +34,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> readUsuario(@PathVariable(name = "{id}") Long id){
+	public ResponseEntity<Usuario> readUsuario(@PathVariable(value = "id") Long id){
 		Usuario cliente = service.readUsuario(id);
 		return new ResponseEntity<Usuario>(cliente, HttpStatus.OK);
 	}
@@ -46,7 +46,7 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Usuario> deleteUsuario(@PathVariable(name = "{id}") Long id){
+	public ResponseEntity<Usuario> deleteUsuario(@PathVariable(value = "id") Long id){
 		service.deleteUsuario(id);
 		return new ResponseEntity<Usuario>(HttpStatus.OK);
 	}

@@ -29,3 +29,9 @@ Version 1.5.0 - MJ
 3- Implementado validação de authenticação no filtro
 4- Implementado procedimento padrão caso usuário seja authenticado com sucesso
 5- Implementado encriptação da senha do usuário conforme algoritmo HS512
+
+Version 1.6.0 - MJ
+1- Implementado filtro de autorização de usuários
+2- Implementado algoritmo de validação de token
+3- Implementado procedimento padrão caso usuário seja autorizado com sucesso
+4- Autorização de usuários através de JWT feita com sucesso!

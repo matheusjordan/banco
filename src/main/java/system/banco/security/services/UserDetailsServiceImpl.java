@@ -1,5 +1,7 @@
 package system.banco.security.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +16,8 @@ import system.banco.service.UsuarioService;
  * */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+	private final Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+			
 	@Autowired
 	private UsuarioService usuarioSer;
 	
@@ -26,6 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		//Verifica se o usuario é nulo
 		if(usuario == null) {
+			LOG.warn("UserDetailsServiceImpl !!!: usuário nulo");
 			throw new UsernameNotFoundException(null);
 		}
 		

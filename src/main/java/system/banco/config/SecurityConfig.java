@@ -16,7 +16,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import system.banco.security.JWT.JWTUtil;
-import system.banco.security.JWT.filters.JWTAuthenticationFilter;
+import system.banco.security.filter.JWTAuthenticationFilter;
+import system.banco.security.filter.JWTAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -67,6 +68,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * */
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		
+		/**Configuração de filtro
+		 * Filtro responsável por autorizar um usuário
+		 * */
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsSer));
 		/**Configuração do gerenciamento de sessões
 		 * Stateless serve para que as minhas sessões
 		 * Não sejam salvas no PC.
@@ -86,6 +91,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return source;
 	}
 	
+	
+	/**Bean do Objeto BCrypt
+	 * Possui as funcionalidades de um objeto BCrypt
+	 * */
 	@Bean
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();

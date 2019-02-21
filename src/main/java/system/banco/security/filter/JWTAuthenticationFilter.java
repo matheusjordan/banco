@@ -1,4 +1,4 @@
-package system.banco.security.JWT.filters;
+package system.banco.security.filter;
 
 import java.util.ArrayList;
 
