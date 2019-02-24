@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import system.banco.dto.autenticacao.Signup;
 import system.banco.models.Usuario;
 import system.banco.repositories.UsuarioRepository;
+import system.banco.service.factory.ContaFactory;
 
 @Service
 public class UsuarioService {
@@ -21,24 +22,27 @@ public class UsuarioService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptEncoder;
+	
+	@Autowired
+	private ContaFactory contaFactory;
 
-	public Usuario createUsuario(Signup cadastro) {
-		Usuario usuario = new Usuario(cadastro.getEmail(), 0L, bCryptEncoder.encode(cadastro.getSenha()));
+	public Usuario create(Signup cadastro) {
+		Usuario usuario = new Usuario(cadastro.getEmail(), contaFactory.conta(), bCryptEncoder.encode(cadastro.getSenha()));
 		usuarioRepo.save(usuario);
 		LOG.info("Usuario " + usuario.getId() + " criado com sucesso!");
 		return usuario;
 	}
 
-	public Usuario readUsuario(Long id) {
+	public Usuario read(Long id) {
 		return usuarioRepo.findById(id).get();
 	}
 	
-	public void updateUsuario(Usuario usuario) {
+	public void update(Usuario usuario) {
 		usuarioRepo.save(usuario);
 		LOG.info("Usuario " + usuario.getId() + " alterado com sucesso!");
 	}
 	
-	public void deleteUsuario(Long id) {
+	public void delete(Long id) {
 		usuarioRepo.deleteById(id);
 		LOG.info("Usuario " + id + " deletado com sucesso!");
 	}

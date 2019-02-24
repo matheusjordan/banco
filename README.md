@@ -35,3 +35,8 @@ Version 1.6.0 - MJ
 2- Implementado algoritmo de validação de token
 3- Implementado procedimento padrão caso usuário seja autorizado com sucesso
 4- Autorização de usuários através de JWT feita com sucesso!
+
+Version 1.7.0 -  MJ
+1- Implementado regra de negócio de criação de contas
+2- Adicionado ContaFactory com persistencia automatica
+3- Adicionado ContaService e Repository

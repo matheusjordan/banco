@@ -7,13 +7,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.2.RELEASE</version>
-		<relativePath /> 
+		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>system.banco</groupId>
 	<artifactId>banco</artifactId>
-	<version>1.6.0</version>
+	<version>1.7.0</version>
 	<name>banco</name>
 	<description>Mini sistema bancário</description>
 
@@ -57,11 +57,18 @@
 			<version>0.9.1</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> 
-			<artifactId>spring-boot-starter-test</artifactId> 
-			<scope>test</scope> 
-			</dependency> -->
+		<dependency>
+			<groupId>wf.bitcoin</groupId>
+			<artifactId>bitcoin-rpc-client</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 	</dependencies>
+
+	<!-- <dependency> <groupId>info.blockchain</groupId> <artifactId>api</artifactId> 
+		<version>LATEST</version> </dependency> Repositório blockchain <repository> 
+		<id>api-v1-client-java-mvn-repo</id> <url>https://raw.githubusercontent.com/blockchain/api-v1-client-java/mvn-repo/</url> 
+		<snapshots> <enabled>true</enabled> <updatePolicy>always</updatePolicy> </snapshots> 
+		</repository> </repositories> -->
 
 	<build>
 		<plugins>

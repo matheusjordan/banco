@@ -1,6 +1,7 @@
 package system.banco.models;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,11 +23,8 @@ public class Conta {
 	@Column(nullable = false)
 	private Double saldo;
 	
-	@Column(unique = true, name = "num_conta", nullable = false)
-	private Integer numConta;
-	
-	@Column(name="tipo_conta", nullable = false)
-	private Integer tipoConta;
+	@Column(unique = true, name = "carteira_bitcoin", nullable = false)
+	private String carteira;
 	
 	@ManyToMany
 	@JoinTable
@@ -35,11 +33,9 @@ public class Conta {
 	//Constructs
 	public Conta() {}
 
-	public Conta(Double saldo, Integer numConta, Integer tipoConta, List<Transacao> transacoes) {
-		super();
+	public Conta(Double saldo, String carteira, List<Transacao> transacoes) {
 		this.saldo = saldo;
-		this.numConta = numConta;
-		this.tipoConta = tipoConta;
+		this.carteira = "" + (new Random()).nextInt(1244454845);
 		this.transacoes = transacoes;
 	}
 
@@ -58,5 +54,21 @@ public class Conta {
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
+	}
+
+	public String getCarteira() {
+		return carteira;
+	}
+
+	public void setCarteira(String carteira) {
+		this.carteira = carteira;
+	}
+
+	public List<Transacao> getTransacoes() {
+		return transacoes;
+	}
+
+	public void setTransacoes(List<Transacao> transacoes) {
+		this.transacoes = transacoes;
 	}
 }

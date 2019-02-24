@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import system.banco.enums.Perfil;
@@ -27,9 +29,6 @@ public class Usuario {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(name = "conta_id", nullable = false)
-	private Long contaId;
-	
 	@Column(nullable = false)
 	private String senha;
 	
@@ -37,6 +36,10 @@ public class Usuario {
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 
+	@OneToOne
+	@JoinTable(name = "usr_contas")
+	private Conta conta;
+	
 	//Constructs
 	public Usuario() {
 		
@@ -44,12 +47,14 @@ public class Usuario {
 		this.addPerfil(Perfil.CLIENTE);
 	}
 
-	public Usuario(String email, Long contaId, String senha) {
+	public Usuario(String email, Conta conta, String senha) {
 		this();
 		this.email = email;
-		this.contaId = contaId;
+		this.conta = conta;
 		this.senha = senha;
 	}
+	
+	
 
 	//Methods
 	public String getEmail() {
@@ -60,12 +65,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public Long getContaId() {
-		return contaId;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setContaId(Long contaId) {
-		this.contaId = contaId;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 
 	public String getSenha() {
